@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        <context:component-scan base-package="controller"></context:component-scan>
+        <mvc:annotation-driven/>
+<!-- <bean name="/hello" class="controller.HelloWorldController"></bean>
+<mvc:default-servlet-handler/>
+BeanNameUrlHandlerMapping表示将请求的URL和Bean名字映射，如URL为“上下文/hello”则Spring配置文件必须有一个名字为“/hello”的Bean，上下文默认忽略
+<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+
+
+SimpleControllerHandlerAdapter表示所有实现了org.springframework.web.servlet.mvc.Controller接口的Bean可以作为Spring Web MVC中的处理器。如果需要其它类型的处理器可以通过实现HadlerAdapter来解决
+<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean> -->
+
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!-- InternalResourceViewResolver表示支持servlet、jsp视图解析 -->
+	<!-- <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> -->
+	<!-- JstlView表示JSP模板页面需要使用JSTL标签库，classpath中必须包含jstl的相关jar包 -->
+	<property name="prefix" value="/WEB-INF/jsp/"></property>
+	<property name="suffix" value=".jsp"></property>
+	<!-- prefix和suffix分别表示前缀和后缀，如传进来的逻辑视图名为hello则视图页面应该放在/WEB-INF/jsp/hello.jsp中 -->
+</bean>
+
+
+</beans>
