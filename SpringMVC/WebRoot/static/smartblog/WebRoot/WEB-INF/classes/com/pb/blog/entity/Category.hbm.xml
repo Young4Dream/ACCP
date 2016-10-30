@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.pb.blog.entity">
+	
+	<class name="Category" table="BLOG_CATEGORY" dynamic-update="true">
+		<cache usage="read-write" include="all"/>	
+		<id name="id" unsaved-value="null" type="java.lang.String" length="32">
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="name" not-null="true" length="100"/>
+		<property name="description" length="1000"/>
+		<property name="defaultCategory" type="boolean" not-null="true"/>
+		<property name="createTime" type="timestamp" not-null="true"/>
+	</class>
+</hibernate-mapping>
