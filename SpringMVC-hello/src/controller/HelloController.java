@@ -17,7 +17,6 @@ public ModelAndView hello1(Integer name){
 	ModelAndView mav=new ModelAndView();
 	mav.addObject("integer","yanwei");
 	mav.setViewName("hello");
-	mav.addObject(name);
 	System.out.println("Hello Spring MVC"+name);
 	return mav;
 }
