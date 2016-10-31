@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="entryDao" class="com.pb.blog.dao.hibernate.EntryDaoHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="categoryDao" class="com.pb.blog.dao.hibernate.CategoryDaoHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="commentDao" class="com.pb.blog.dao.hibernate.CommentDaoHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	
+	<bean id="userDao" class="com.pb.blog.dao.hibernate.UserDaoHibernateImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+    <bean id="siteConfigDao" class="com.pb.blog.dao.hibernate.SiteConfigDaoHibernateImpl">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>
