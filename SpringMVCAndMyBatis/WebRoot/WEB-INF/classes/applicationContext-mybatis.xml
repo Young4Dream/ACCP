@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd"> 
+     
+       <context:component-scan base-package="cn.sm.dao,cn.sm.service"></context:component-scan>
+	<!-- property读取 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 只有一个连接池（单例，singleton），因此要配置关闭的方法  -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" scope="singleton">
+		<property name="driverClassName" value="${driverClassName}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<tx:annotation-driven/>
+	<!-- 事务管理 也可以用注解@Transactional或AOP-->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="dataSourceTransaction">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 配置SqlSessionFactory -->
+	<bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+	<!-- 引入myBatis-config.xml -->
+		<property name="configLocation" value="classpath:myBatis-config.xml"></property>
+	</bean>
+	<!-- 配置mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="mapperScannerConfigurer">
+		<property name="basePackage" value="cn.sm.dao"></property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
