@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="test" namespace="/" extends="struts-default">
+	<!-- class引用的不是类名 是bean的名字(id) -->
+		<action name="stuAction" class="StuActionBean" method="queryList">
+			<result>/index.jsp</result>
+		</action>
+		<action name="addstuAction" class="StuActionBean" method="addStu">
+			<!-- type默认转发到jsp -->
+			<!-- type chain转发到action -->
+			<!-- type redirectAction重定向到action -->
+			<!-- type redirect重定向到jsp -->
+			<result type="redirectAction">stuAction</result>
+			<result name="input">/add.jsp</result>
+		</action>
+		
+	</package>
+</struts>    
